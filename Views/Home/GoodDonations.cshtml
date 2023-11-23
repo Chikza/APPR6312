@@ -1,0 +1,96 @@
+﻿@model Part_2.Models.GoodDonation
+
+@{
+    ViewBag.Title = "GoodDonations";
+}
+<style>
+    body {
+        background-color: #BA39BE;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%23BA39BE' width='11' height='11'/%3E%3Crect fill='%23be37bc' x='10' width='11' height='11'/%3E%3Crect fill='%23c235b9' y='10' width='11' height='11'/%3E%3Crect fill='%23c533b7' x='20' width='11' height='11'/%3E%3Crect fill='%23c931b4' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%23cc2fb1' y='20' width='11' height='11'/%3E%3Crect fill='%23cf2daf' x='30' width='11' height='11'/%3E%3Crect fill='%23d32bac' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23d629a9' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23d927a7' y='30' width='11' height='11'/%3E%3Crect fill='%23db26a4' x='40' width='11' height='11'/%3E%3Crect fill='%23de24a1' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23e1229e' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23e3219b' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23e52098' y='40' width='11' height='11'/%3E%3Crect fill='%23e81f96' x='50' width='11' height='11'/%3E%3Crect fill='%23ea1e93' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23ec1d90' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23ee1d8d' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23ef1d8a' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23f11e87' y='50' width='11' height='11'/%3E%3Crect fill='%23f31e84' x='60' width='11' height='11'/%3E%3Crect fill='%23f41f81' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23f6207e' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23f7227b' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23f82378' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23f92575' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23fa2772' x='70' width='11' height='11'/%3E%3Crect fill='%23fb2970' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23fc2b6d' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23fd2e6a' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23fd3067' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23fe3264' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23fe3561' x='80' width='11' height='11'/%3E%3Crect fill='%23fe375e' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23ff3a5b' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23ff3d59' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23ff3f56' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23ff4253' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23ff4550' x='90' width='11' height='11'/%3E%3Crect fill='%23ff474d' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23ff4a4a' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23fe4d48' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23fe4f45' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23fd5242' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23fd553f' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23fc573d' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23fc5a3a' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23fb5c37' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23fa5f34' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23f96231' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23f8642e' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23f7672b' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23f66928' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23f56c25' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23f46e22' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23f2711f' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23f1731b' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23ef7617' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23EE7813' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<h2>GoodDonations</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>GoodDonation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.GoodId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GoodId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GoodId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DonarName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DonarName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DonarName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumItems, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumItems, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumItems, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

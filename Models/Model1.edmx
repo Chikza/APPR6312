@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DjPromoWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AllocateGoods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOfAllocatioN" Type="datetime" />
+          <Property Name="NumOfItems" Type="int" />
+          <Property Name="DisasterId" Type="int" />
+          <Property Name="GoodId" Type="int" />
+        </EntityType>
+        <EntityType Name="AllocateMoney">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllocationDate" Type="datetime" Nullable="false" />
+          <Property Name="ALloocationAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DisasterId" Type="int" />
+        </EntityType>
+        <EntityType Name="Disaster">
+          <Key>
+            <PropertyRef Name="DisasterID" />
+          </Key>
+          <Property Name="DisasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Start_date" Type="date" />
+          <Property Name="End_date" Type="date" />
+          <Property Name="Location" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Aid_types" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="GoodDonations">
+          <Key>
+            <PropertyRef Name="GoodId" />
+          </Key>
+          <Property Name="GoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="DonarName" Type="varchar" MaxLength="30" />
+          <Property Name="Date" Type="date" />
+          <Property Name="NumItems" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MonetaryDonations">
+          <Key>
+            <PropertyRef Name="MonetaryId" />
+          </Key>
+          <Property Name="MonetaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emails" Type="varchar" MaxLength="20" />
+          <Property Name="DonatorName" Type="varchar" MaxLength="30" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="PurchaseGoods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOfPurchase" Type="datetime" />
+          <Property Name="AmountOfPurchase" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NumItems" Type="int" />
+          <Property Name="DisasterId" Type="int" />
+          <Property Name="GoodId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Full_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Disaster__Email__778AC167">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="Disaster" Type="Self.Disaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Disaster">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoodDonat__Email__71D1E811">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="GoodDonations" Type="Self.GoodDonations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="GoodDonations">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MonetaryD__Email__74AE54BC">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="MonetaryDonations" Type="Self.MonetaryDonations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="MonetaryDonations">
+              <PropertyRef Name="Emails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DjPromoWebsiteModelStoreContainer">
+          <EntitySet Name="AllocateGoods" EntityType="Self.AllocateGoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllocateMoney" EntityType="Self.AllocateMoney" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disaster" EntityType="Self.Disaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodDonations" EntityType="Self.GoodDonations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonetaryDonations" EntityType="Self.MonetaryDonations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseGoods" EntityType="Self.PurchaseGoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Disaster__Email__778AC167" Association="Self.FK__Disaster__Email__778AC167">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="Disaster" EntitySet="Disaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoodDonat__Email__71D1E811" Association="Self.FK__GoodDonat__Email__71D1E811">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="GoodDonations" EntitySet="GoodDonations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MonetaryD__Email__74AE54BC" Association="Self.FK__MonetaryD__Email__74AE54BC">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="MonetaryDonations" EntitySet="MonetaryDonations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DjPromoWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AllocateGood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfAllocatioN" Type="DateTime" Precision="3" />
+          <Property Name="NumOfItems" Type="Int32" />
+          <Property Name="DisasterId" Type="Int32" />
+          <Property Name="GoodId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AllocateMoney">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllocationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ALloocationAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DisasterId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Disaster">
+          <Key>
+            <PropertyRef Name="DisasterID" />
+          </Key>
+          <Property Name="DisasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Start_date" Type="DateTime" Precision="0" />
+          <Property Name="End_date" Type="DateTime" Precision="0" />
+          <Property Name="Location" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Aid_types" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__Disaster__Email__778AC167" FromRole="Disaster" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="GoodDonation">
+          <Key>
+            <PropertyRef Name="GoodId" />
+          </Key>
+          <Property Name="GoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DonarName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="NumItems" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__GoodDonat__Email__71D1E811" FromRole="GoodDonations" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="MonetaryDonation">
+          <Key>
+            <PropertyRef Name="MonetaryId" />
+          </Key>
+          <Property Name="MonetaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emails" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DonatorName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__MonetaryD__Email__74AE54BC" FromRole="MonetaryDonations" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="PurchaseGood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfPurchase" Type="DateTime" Precision="3" />
+          <Property Name="AmountOfPurchase" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NumItems" Type="Int32" />
+          <Property Name="DisasterId" Type="Int32" />
+          <Property Name="GoodId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Full_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Disasters" Relationship="Self.FK__Disaster__Email__778AC167" FromRole="UserTable" ToRole="Disaster" />
+          <NavigationProperty Name="GoodDonations" Relationship="Self.FK__GoodDonat__Email__71D1E811" FromRole="UserTable" ToRole="GoodDonations" />
+          <NavigationProperty Name="MonetaryDonations" Relationship="Self.FK__MonetaryD__Email__74AE54BC" FromRole="UserTable" ToRole="MonetaryDonations" />
+        </EntityType>
+        <Association Name="FK__Disaster__Email__778AC167">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="Disaster" Type="Self.Disaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Disaster">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoodDonat__Email__71D1E811">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="GoodDonations" Type="Self.GoodDonation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="GoodDonations">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MonetaryD__Email__74AE54BC">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="0..1" />
+          <End Role="MonetaryDonations" Type="Self.MonetaryDonation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="MonetaryDonations">
+              <PropertyRef Name="Emails" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DjPromoWebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AllocateGoods" EntityType="Self.AllocateGood" />
+          <EntitySet Name="AllocateMoneys" EntityType="Self.AllocateMoney" />
+          <EntitySet Name="Disasters" EntityType="Self.Disaster" />
+          <EntitySet Name="GoodDonations" EntityType="Self.GoodDonation" />
+          <EntitySet Name="MonetaryDonations" EntityType="Self.MonetaryDonation" />
+          <EntitySet Name="PurchaseGoods" EntityType="Self.PurchaseGood" />
+          <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK__Disaster__Email__778AC167" Association="Self.FK__Disaster__Email__778AC167">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="Disaster" EntitySet="Disasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoodDonat__Email__71D1E811" Association="Self.FK__GoodDonat__Email__71D1E811">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="GoodDonations" EntitySet="GoodDonations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MonetaryD__Email__74AE54BC" Association="Self.FK__MonetaryD__Email__74AE54BC">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="MonetaryDonations" EntitySet="MonetaryDonations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DjPromoWebsiteModelStoreContainer" CdmEntityContainer="DjPromoWebsiteEntities">
+          <EntitySetMapping Name="AllocateGoods">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.AllocateGood">
+              <MappingFragment StoreEntitySet="AllocateGoods">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateOfAllocatioN" ColumnName="DateOfAllocatioN" />
+                <ScalarProperty Name="NumOfItems" ColumnName="NumOfItems" />
+                <ScalarProperty Name="DisasterId" ColumnName="DisasterId" />
+                <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllocateMoneys">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.AllocateMoney">
+              <MappingFragment StoreEntitySet="AllocateMoney">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AllocationDate" ColumnName="AllocationDate" />
+                <ScalarProperty Name="ALloocationAmount" ColumnName="ALloocationAmount" />
+                <ScalarProperty Name="DisasterId" ColumnName="DisasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disasters">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.Disaster">
+              <MappingFragment StoreEntitySet="Disaster">
+                <ScalarProperty Name="DisasterID" ColumnName="DisasterID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+                <ScalarProperty Name="End_date" ColumnName="End_date" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Aid_types" ColumnName="Aid_types" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodDonations">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.GoodDonation">
+              <MappingFragment StoreEntitySet="GoodDonations">
+                <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DonarName" ColumnName="DonarName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="NumItems" ColumnName="NumItems" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonetaryDonations">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.MonetaryDonation">
+              <MappingFragment StoreEntitySet="MonetaryDonations">
+                <ScalarProperty Name="MonetaryId" ColumnName="MonetaryId" />
+                <ScalarProperty Name="Emails" ColumnName="Emails" />
+                <ScalarProperty Name="DonatorName" ColumnName="DonatorName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseGoods">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.PurchaseGood">
+              <MappingFragment StoreEntitySet="PurchaseGoods">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="AmountOfPurchase" ColumnName="AmountOfPurchase" />
+                <ScalarProperty Name="NumItems" ColumnName="NumItems" />
+                <ScalarProperty Name="DisasterId" ColumnName="DisasterId" />
+                <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="DjPromoWebsiteModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

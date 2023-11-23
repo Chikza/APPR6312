@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="feb4257e5e1749d7bcbdadee318d507c" Name="Diagram1">
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.AllocateGood" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.AllocateMoney" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.Disaster" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.GoodDonation" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.MonetaryDonation" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.PurchaseGood" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DjPromoWebsiteModel.UserTable" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="DjPromoWebsiteModel.FK__Disaster__Email__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="DjPromoWebsiteModel.FK__GoodDonat__Email__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="DjPromoWebsiteModel.FK__MonetaryD__Email__74AE54BC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
